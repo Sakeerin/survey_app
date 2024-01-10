@@ -2,7 +2,7 @@ import {createRouter,createWebHistory} from 'vue-router';
 import Dashboard from '../views/Dashboard.vue';
 import Surveys from '../views/Surveys.vue';
 import Login from '../views/Login.vue';
-import Regiter from '../views/Register.vue';
+import Register from '../views/Register.vue';
 import DefaultLayout from '../components/DefaultLayout.vue';
 import AuthLayout from '../components/AuthLayout.vue';
 import store from '../store';
@@ -33,8 +33,8 @@ const routes = [
             },
             {
                 path: '/register',
-                name: 'Regiter',
-                component: Regiter
+                name: 'Register',
+                component: Register
             },
         ]
     },

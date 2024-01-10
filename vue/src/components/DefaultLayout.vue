@@ -92,10 +92,13 @@
   const user = computed(() => store.state.user.data)
 
   function logout(){
-    store.commit('logout');
-    router.push({
+    store.dispatch('logout')
+    .then(() => {
+      router.push({
         name: 'Login',
+      });
     });
+    
   }
   
   const navigation = [
