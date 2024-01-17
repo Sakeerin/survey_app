@@ -76,6 +76,20 @@ const store = createStore({
               return res;
             });
         },
+        getSurveyBySlug({ commit }, slug) {
+          commit("setCurrentSurveyLoading", true);
+          return axiosClient
+            .get(`/survey-by-slug/${slug}`)
+            .then((res) => {
+              commit("setCurrentSurvey", res.data);
+              commit("setCurrentSurveyLoading", false);
+              return res;
+            })
+            .catch((err) => {
+              commit("setCurrentSurveyLoading", false);
+              throw err;
+            });
+        },
         register({ commit }, user){
             return axiosClient.post('/register', user)
             .then(({data}) => {

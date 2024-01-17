@@ -65,6 +65,22 @@ class SurveyController extends Controller
         return new SurveyResource($survey);
     }
 
+    public function showForGuest(Survey $survey)
+    {
+        // if (!$survey->status) {
+        //     return response("", 404);
+        // }
+
+        // $currentDate = new \DateTime();
+        // $expireDate = new \DateTime($survey->expire_date);
+        // if ($currentDate > $expireDate) {
+        //     return response("", 404);
+        // }
+
+        return new SurveyResource($survey);
+    }
+
+
     /**
      * Update the specified resource in storage.
      */
