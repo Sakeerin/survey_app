@@ -1,55 +1,44 @@
 <template>
-    <div
-          class="flex flex-col py-4 px-6 shadow-md bg-white hover:bg-gray-50 h-[470px]"
-        >
-        <img :src="survey.image_url" alt="" class="w-full h-48 object-cover">
-        <h4 class="mt-4 text-lg font-bold">{{ survey.title }}</h4>
-        <div v-html="survey.description" class=""></div>
-        <div class="flex justify-between items-center mt-3">
-          <router-link :to="{name: 'SurveyView', params: { id: survey.id }}"
-            class="flex py-2 px-4 border border-transparent text-sm rounded-md text-white bg-indigo-600 hove:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
-          >
-            Edit
-          </router-link>
-          <div class="flex items-center">
-            <a :href="`/view/survey/${survey.slug}`"
-                target="_blank"
-                class="h-8 w-8 flex items-center justify-center rounded-full text-sm text-indig0-500"
-              >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-</svg>
+  <div
+    class="flex flex-col py-4 px-6 shadow-md bg-white hover:bg-gray-50 h-[470px]"
+  >
+    <img
+      :src="
+        survey.image_url ||
+        'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'
+      "
+      :alt="survey.title"
+      class="w-full h-48 object-cover"
+    />
+    <h4 class="mt-4 text-lg font-bold">{{ survey.title }}</h4>
+    <div v-html="survey.description" class="overflow-hidden flex-1"></div>
 
-            </a>
-            <button
-            v-if="survey.id"
-            type="button"
-            @click="emit('delete',survey)"
-            class="h-8 w-8 flex items-center justify-center rounded-full border border-transparent text-sm text-red-500 focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-          >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-red-500"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                >
-                <path
-                    fill-rule="evenodd"
-                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                    clip-rule="evenodd"
-                />
-            </svg>
-            </button>
-          </div>
-        </div>     
+    <div class="flex justify-between items-center mt-3">
+      <TButton :to="{ name: 'SurveyView', params: { id: survey.id } }">
+        <PencilIcon class="wo-5 h-5 mr-2 " />
+        Edit
+      </TButton>
+      <div class="flex items-center">
+        <TButton :href="`/view/survey/${survey.slug}`" circle link target="_blank">
+          <ExternalLinkIcon class="w-5 h-5" />
+        </TButton>
+
+        <TButton v-if="survey.id" @click="emit('delete', survey)" circle link color="red">
+          <TrashIcon class="w-5 h-5" />
+        </TButton>
       </div>
+    </div>
+  </div>
 </template>
+
 <script setup>
+import TButton from "./core/TButton.vue";
+import { PencilIcon, ExternalLinkIcon, TrashIcon } from '@heroicons/vue/solid'
+
 const { survey } = defineProps({
   survey: Object,
 });
-const emit = defineEmits(["delete"]);
+const emit = defineEmits(["delete", "edit"]);
 </script>
-<style lang="">
-    
-</style>
+
+<style></style>

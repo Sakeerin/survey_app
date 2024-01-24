@@ -115,7 +115,7 @@ const store = createStore({
             return axiosClient.post('/register', user)
             .then(({data}) => {
                 commit('setUser', data);
-                // commit('setToken', data.token)
+                commit('setToken', data.token)
                 return data;
             })
             // return fetch(`http://localhost:8000/api/register`,{
@@ -136,7 +136,7 @@ const store = createStore({
             return axiosClient.post('/login', user)
             .then(({data}) => {
                 commit('setUser', data);
-                // commit('setToken', data.token)
+                commit('setToken', data.token)
                 return data;
             })
         },
@@ -151,6 +151,9 @@ const store = createStore({
     mutations: {
         dashboardLoading: (state, loading) => {
           state.dashboard.loading = loading;
+        },
+        setDashboardData: (state, data) => {
+          state.dashboard.data = data
         },
         setCurrentSurveyLoading: (state, loading) => {
             state.currentSurvey.loading = loading;
@@ -186,10 +189,10 @@ const store = createStore({
             state.user.token = userData.token;
             sessionStorage.setItem('TOKEN', userData.token);
         },
-        // setToken: (state, token) => {
-        //     state.user.token = token;
-        //     sessionStorage.setItem('TOKEN', token);
-        // },
+        setToken: (state, token) => {
+            state.user.token = token;
+            sessionStorage.setItem('TOKEN', token);
+        },
         notify: (state, {message, type}) => {
           state.notification.show = true;
           state.notification.type = type;

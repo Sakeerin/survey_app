@@ -109,6 +109,9 @@
 </template>
 
 <script setup>
+import {EyeIcon, PencilIcon} from "@heroicons/vue/solid"
+import DashboardCard from "../components/core/DashboardCard.vue";
+import TButton from "../components/core/TButton.vue";
 import PageComponent from '../components/PageComponent.vue';
 import { computed } from "vue";
 import { useStore } from "vuex";
