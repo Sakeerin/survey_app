@@ -326,6 +326,7 @@
   // Emit the data change
   function dataChange() {
     const data = model.value;
+    // const data = JSON.parse(JSON.stringify(model.value));
     if (!shouldHaveOptions()) {
       delete data.data.options;
     }
