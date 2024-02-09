@@ -84,7 +84,6 @@ class SurveyController extends Controller
     public function storeAnswer(StoreSurveyAnswerRequest $request, Survey $survey)
     {
         $validated = $request->validated();
-//        var_dump($validated, $survey);
 
         $surveyAnswer = SurveyAnswer::create([
             'survey_id' => $survey->id,
